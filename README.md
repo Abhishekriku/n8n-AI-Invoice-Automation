@@ -47,7 +47,7 @@ Manually processing invoices from email attachments is slow, repetitive, and pro
 ```
 
 ## Screenshots
-![flow](screenshots/AI%Invoice%processing%system.png)
+![flow](screenshots/AI-Invoice-processing-system.png)
 
 ## Notes on Credentials & Safety
 - This repo does **not** include secrets. Configure credentials inside n8n.
