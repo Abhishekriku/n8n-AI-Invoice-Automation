@@ -1,28 +1,40 @@
-# AI Invoice Processing System (PDF/OCR → Google Sheets + Slack)
+# AI Invoice Processing System (n8n + OpenAI + Gmail + Notion)
 
 ## Problem
-Manual invoice entry is slow and error‑prone.
+Manually processing invoices from email attachments is slow, repetitive, and prone to human error. Businesses waste hours each week downloading PDFs, extracting data, and updating finance records.
 
 ## Solution (n8n)
-- Gmail Trigger (new email w/ PDF)
-- PDF/OCR (extract text)
-- Function / Regex (Invoice No, Date, Amount)
-- Google Sheets (append row)
-- Slack (alert if Amount > threshold)
+
+- Gmail Trigger: captures incoming emails with PDF invoices.
+- Google Drive Upload/Download: stores and retrieves invoice files.
+- Extract JSON from File: parses invoice PDF content.
+- AI Agent (OpenAI + Structured Parser): extracts key fields (Invoice No, Date, Vendor, Amount).
+- Conditional Check: validates data quality.
+- Notion Database: saves invoice records for tracking and reporting.
+- File Cleanup: deletes processed files after logging.
 
 ## Result
-- Faster response times and fewer manual steps.
-- Replace with real or demo metrics (e.g., first response < 2 min, 70% auto‑resolved).
+
+- Eliminates manual invoice entry.
+- Ensures structured financial data is always available in Notion.
+- Saves ~4–6 hours/month for small teams (scales higher for enterprises).
+- Reduces errors by applying AI validation.
 
 ## Stack
-n8n, Gmail, OCR, Google Sheets, Slack
+
+- n8n (workflow automation)
+- Gmail (invoice intake)
+- Google Drive (file storage)
+- OpenAI (field extraction + structured parsing)
+- Notion (invoice database + reporting)
 
 ## How to Run (Demo)
-1. Import `workflow.json` into n8n (this export is sanitized; set your own credentials).
-2. Create the required credentials in n8n (WhatsApp/Telegram/OpenAI/etc.).
-3. Create a Google Sheet / Notion DB / Airtable base as needed.
-4. Update node IDs/URLs in the workflow to match your resources.
-5. Trigger the entry node (Cron/Webhook/Gmail) with sample data from `/sample-data`.
+
+1. Import workflow.json into n8n (this export is sanitized; set your own credentials).
+2. Connect Gmail, Google Drive, OpenAI, and Notion credentials.
+3. In Notion, create a database with fields: Invoice No, Date, Vendor, Amount.
+4. Update node IDs/URLs in the workflow to match your setup.
+5. Send a test email with a sample PDF invoice to trigger the flow.
 
 ## Repo Structure
 ```
